@@ -1,0 +1,6 @@
+# Ignore virtual environments
+myenv/
+
+website_files/
+
+output_files/
