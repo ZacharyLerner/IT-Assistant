@@ -29,3 +29,5 @@ def write_json(input_file, output_file):
     output = {'document': document_lines}
     with open(output_file, "w", encoding='utf-8') as json_file:
         json.dump(output, json_file, indent=4)
+
+    json_file.close()
