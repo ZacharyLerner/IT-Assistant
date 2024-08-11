@@ -2,9 +2,10 @@
 myenv/
 
 file_management/html_files/
+file_management/google_docs/
 
 file_management/data.json
+file_management/data2.json
 file_management/cleaned_html.txt
-
 
 output_files/

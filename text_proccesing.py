@@ -17,16 +17,7 @@ stemmer = SnowballStemmer("english")
 
 filtered_list = []
 
-
-example_string = """Men like Schiaparelli watched the red planet—it is odd, by-the-bye, that
-for countless centuries Mars has been the star of war—but failed to
-interpret the fluctuating appearances of the markings they mapped so well.
-All that time the Martians must have been getting ready.
-During the opposition of 1894 a great light was seen on the illuminated
-part of the disk, first at the Lick Observatory, then by Perrotin of Nice,
-and then by other observers. English readers heard of it first in the
-issue of Nature dated August 2."""
-
+# Processed and tokenizes text by removing stop words and stemming
 def process_text(text):
     text = re.sub(r'[^\w\s]', '', text)  # Remove punctuation
     text = text.lower()  # Convert to lowercase
@@ -35,6 +26,7 @@ def process_text(text):
     stemmed_words = [stemmer.stem(word) for word in filtered_words]  # Stem words
     return stemmed_words
 
+# removes Named Entities from text helping with searching
 def extract_ne(text):
     entities = set()
     previous = None
@@ -49,6 +41,7 @@ def extract_ne(text):
             previous = None
     return entities
 
+# tokenize function called by other files to make the search accurate
 def tokenize(text):
     processed_text = process_text(text)
     named_entities = extract_ne(text)
