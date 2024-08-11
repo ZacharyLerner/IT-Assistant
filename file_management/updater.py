@@ -1,5 +1,5 @@
 import os
-from html_cleaner import clean_and_format_file
+from file_management.file_cleaner import clean_and_format_file
 from text_cleaner import write_json
 
 # files chosen to manage the file cleaning and json writing, can be changed 
