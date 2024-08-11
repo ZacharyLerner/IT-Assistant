@@ -6,7 +6,7 @@ from text_proccesing import tokenize
 documents = []
 
 # Load documents
-with open('file_management/data.json', 'r') as f:
+with open('file_management/itsdata.json', 'r') as f:
     adobe_info = json.load(f)
 documents.extend(adobe_info['document'])
 
@@ -44,7 +44,6 @@ def get_tf_idf(tf, idf):
 
 def search(query, tf_idf):
     query_tokens = tokenize(query)
-    print(query_tokens)
     scores = {doc_id: 0 for doc_id in range(1, len(documents) + 1)}
     for word in query_tokens:
         if word in tf_idf:
@@ -56,40 +55,35 @@ def search(query, tf_idf):
 
 
 
-def make_tf_idf(file_path):
+def make_tf_idf(file_name):
     inverted_index, doc_lengths = create_inverted_index(documents)
     tf = get_tf(inverted_index, doc_lengths)
     idf = get_idf(inverted_index, len(documents))
     tf_idf = get_tf_idf(tf, idf)
-
-    print(tf_idf)
         # Write TF-IDF model to a text file
 
-    with open("tf_idf.txt", "w") as f:
+    with open(file_name, "w") as f:
         f.write(json.dumps(tf_idf))
 
+def query(query, num_results):
+    # Read TF-IDF model from file
+    ranked_results = search(query, tf_idf)
+    results = ""
+    results += query
+    # Display results
+    results += ("Top " + str(num_results) + " Results for " + query + "\n")
+
+
+    for i in range(num_results):
+        results += ("Result " + str(i+1) + "\n")
+        results += (documents[ranked_results[i][0]-1] + "\n")
+
+    return results
 
 tf_idf = {}
-
-file_name= "tf_idf.txt"
+file_name= "models/its_tf_idf.txt"
 
 #make_tf_idf(file_name)
 
-# Read TF-IDF model from file
 with open(file_name, "r") as f:
-    tf_idf = json.load(f)
-
-# Example query
-query = "courses appear instructor days"
-ranked_results = search(query, tf_idf)
-
-# Display results
-print("Top 3 Results for", query)
-num_results = 5
-
-for i in range(num_results):
-    print(documents[ranked_results[i][0]-1])
-    print()
-
-
-
+        tf_idf = json.load(f)
