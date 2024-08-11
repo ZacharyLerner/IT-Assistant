@@ -1,11 +1,16 @@
 # Ignore virtual environments
 myenv/
 
-file_management/html_files/
+api_key.py
+
+file_management/internal_site/
 file_management/google_docs/
+file_management/kb_articles
 
 file_management/data.json
 file_management/data2.json
 file_management/cleaned_html.txt
+file_management/itsdata.json
+file_management/tlsdata.json
 
 output_files/

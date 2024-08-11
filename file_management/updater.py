@@ -1,5 +1,5 @@
 import os
-from file_management.file_cleaner import clean_and_format_file
+from file_cleaner import clean_and_format_file
 from text_cleaner import write_json
 
 # files chosen to manage the file cleaning and json writing, can be changed 
@@ -23,4 +23,4 @@ def update_files(directory):
     print("File written to JSON")
 
 # run a file directory to create a full json of those files, this can be manually view and edited to help assist search
-update_files("file_management/google_docs")
+write_json(file_output, json_output)
