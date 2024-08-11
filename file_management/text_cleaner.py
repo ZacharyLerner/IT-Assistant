@@ -1,13 +1,17 @@
 import json
 
+# writes a formatted text file a json file
 def write_json(input_file, output_file):
     file = open(input_file, "r", encoding='utf-8')
 
     separated_line = ""
     document_lines = []
+
+    # writes each section to one line in the json file
     for line in file:
         if line.strip() == "":
             continue  # Skip empty lines
+        # uses # to indicate new sections of text
         if line[0] == '#':
             if separated_line.strip():
                 document_lines.append(separated_line.strip())  # add the current section to the list and strip any leading/trailing whitespace
