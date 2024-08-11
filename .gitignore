@@ -1,6 +1,10 @@
 # Ignore virtual environments
 myenv/
 
-website_files/
+file_management/html_files/
+
+file_management/data.json
+file_management/cleaned_html.txt
+
 
 output_files/
