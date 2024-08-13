@@ -26,10 +26,10 @@ function App() {
         body: JSON.stringify({ message }),
       });
       const data = await response.json();
-      setMessages((prevMessages) => [...prevMessages, { from: "ITSD", text: data.response }]);
+      setMessages((prevMessages) => [...prevMessages, {text: data.response }]);
     } catch (error) {
       console.error("Error fetching response:", error);
-      setMessages((prevMessages) => [...prevMessages, { from: "ITSD", text: "Error fetching response." }]);
+      setMessages((prevMessages) => [...prevMessages, {text: "Error fetching response." }]);
     }
     setLoading(false);
   };
