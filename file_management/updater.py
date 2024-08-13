@@ -4,7 +4,7 @@ from text_cleaner import write_json
 
 # files chosen to manage the file cleaning and json writing, can be changed 
 file_output = "file_management/cleaned_html.txt"
-json_output = "file_management/data2.json"
+json_output = "file_management/tlsdata.json"
 
 # Runs and write all files to a json file, great for updating but can have inaccuracies 
 def update_files(directory):
