@@ -42,7 +42,7 @@ def get_idf(inverted_index, num_docs):
         idf[word] = math.log(num_docs / len(doc_freq))
     return idf
 
-# Caculates the TF_IDF for all items in the Document
+# Caculates the TF_IDF for all items in the Document based on TF and IDF
 def get_tf_idf(tf, idf):
     tf_idf = defaultdict(dict)
     for word, doc_freq in tf.items():
@@ -61,7 +61,7 @@ def search(query, tf_idf, documents):
     ranked_docs = sorted(scores.items(), key=lambda item: item[1], reverse=True)
     return ranked_docs
 
-# 
+# Used to find and combine tf, idf, and then store the result as the final TF_IDF
 def make_tf_idf(file_name, documents):
     inverted_index, doc_lengths = create_inverted_index(documents)
     tf = get_tf(inverted_index, doc_lengths)
@@ -71,6 +71,8 @@ def make_tf_idf(file_name, documents):
     with open(file_name, "w") as f:
         f.write(json.dumps(tf_idf))
 
+# Uses the search function and TF_IDF model type to find specific answers
+# Todo: Expand with more data sets. Could be not ITSD related.
 def query(query_str, num_results, model_name):
     if model_name == "its":
         json_path = "file_management/itsdata.json"
@@ -104,7 +106,7 @@ def query(query_str, num_results, model_name):
 
     return results
 
-# Example usage
+# Usage to create a TF_IDF from scratch, not needed as models are ready
 """
 make_tf_idf("models/tls_tf_idf.txt", load_documents("file_management/tlsdata.json"))
 print(query("sample query", 5, "tls"))

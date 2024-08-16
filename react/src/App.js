@@ -9,6 +9,8 @@ function App() {
   const chatBoxRef = useRef(null);
 
   useEffect(() => {
+    document.title = "ITSD Chat";
+    
     if (chatBoxRef.current) {
       chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
     }
