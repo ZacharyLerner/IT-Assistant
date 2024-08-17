@@ -3,7 +3,12 @@ from openai_parameters import extract_keywords, query_ai
 
 app = Flask(__name__)
 
+# Default model is ITS
 model = "its"
+
+# Chat backend for the assistant
+# Extracts keywords from the user message and sends it to the AI model
+# Returns the response from the AI model
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -21,7 +26,7 @@ def chat():
         response_message = "TLS MODE"
         mode_changed = True
     
-    # Ensure 'model' is initialized before it's used
+    # Ensures 'model' is initialized before it's used
     
     if not mode_changed:
         ai_message = query_ai(keyword_message, 10, user_message, model)
